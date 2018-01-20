@@ -11,5 +11,9 @@ function initialize(app, db) {
     });
   });
 
+  app.get('/', function(req, res) {
+  	res.render('index.html');
+  });
+
 }
 exports.initialize = initialize;
