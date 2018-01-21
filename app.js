@@ -23,11 +23,11 @@ app.use(express.static('./public'));
 app.set('view engine', 'html');
 app.engine('html', consolidate.underscore);
 
-var port = 8000;
+var port = process.env.PORT || 8000;
 http.createServer(app).listen(port, function() {
   console.log('Server listening at port ' + port);
 
-  var url = 'mongodb://' + process.env.MLAB_USER + ':' + process.env.MLAB_pw + '@ds111648.mlab.com:11648/edmania';
+  var url = process.env.MLAB_URI;
   mongoClient.connect(url, function(err, db) {
     console.log("Connected to MLAB EDMania database");
     routes.initialize(app, db);
