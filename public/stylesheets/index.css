@@ -6,11 +6,19 @@ section, footer, header, aside, nav{
     display: block;
 }
 
+/*-------------------------
+    Set Details layout
+--------------------------*/
+
 #setDisplay {
   width: 400px;
   float: left;
   margin-top: 16px;
 }
+
+/*-------------------------
+    Card layout
+--------------------------*/
 
 .card {
   width: 800px;

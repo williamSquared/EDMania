@@ -1,3 +1,4 @@
+require('dotenv').config();
 var http = require("http");
 var _ = require("underscore");
 var bodyParser = require('body-parser');
@@ -21,14 +22,14 @@ app.use(express.static('./public'));
 
 app.set('view engine', 'html');
 app.engine('html', consolidate.underscore);
-var port = 8000;
 
+var port = 8000;
 http.createServer(app).listen(port, function() {
   console.log('Server listening at port ' + port);
 
-  var url = 'mongodb://localhost:27017/edmania';
+  var url = 'mongodb://' + process.env.MLAB_USER + ':' + process.env.MLAB_pw + '@ds111648.mlab.com:11648/edmania';
   mongoClient.connect(url, function(err, db) {
-    console.log("Connected to EDMania database");
+    console.log("Connected to MLAB EDMania database");
     routes.initialize(app, db);
   });
 });
