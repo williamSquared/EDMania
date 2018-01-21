@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import pymongo
 from pymongo import MongoClient
+import local_settings
 
 data = []
 
@@ -9,9 +10,12 @@ data = []
 urls = ["http://www.global-sets.com/"]
 
 def insertDataInMongo(data):
-	collection = MongoClient().edmania.setData
+	connection = pymongo.MongoClient('ds111648.mlab.com', 11648)
+	db = connection['edmania']
+	db.authenticate(local_settings.secret_keys['MLAB_USER'], local_settings.secret_keys['MLAB'])
+
 	try:
-		collection.insert_many(data, ordered=False)
+		db.setData.insert_many(data, ordered=False)
 	except pymongo.errors.BulkWriteError as e:
 		pass # Ignoring error mentioning duplicates
 
@@ -43,7 +47,7 @@ def buildDownloadLinks(links):
 	download_links = {}
 
 	for link in links:
-		if 'http://ul' in link['href']:	
+		if 'http://ul' in link['href']:
 			download_links['uploaded'] = link['href']
 		else:
 			download_links['zippyshare'] = link['href']
@@ -61,9 +65,9 @@ def buildMediaPlayerLink(trackId):
 def createDataObject(set_info, download_links, image_url, iHeartTrackURL):
 	data.append({
 		'artist': set_info[0].split(':')[1].strip(),
-		'title': set_info[1].split(':')[1].strip(), 
+		'title': set_info[1].split(':')[1].strip(),
 		'quality': set_info[2].split(':')[1].strip(),
-		'duration': set_info[3].split(': ')[1].strip(), # added space in split to capture minutes and seconds 
+		'duration': set_info[3].split(': ')[1].strip(), # added space in split to capture minutes and seconds
 		'size': set_info[4].split(':')[1].strip().replace(',', '.'),
 		'genre': set_info[5].split(':')[1].strip(),
 		'image': image_url,
