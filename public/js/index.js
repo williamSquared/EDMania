@@ -1,24 +1,22 @@
-(function() {
-	'use strict';
+$().ready(function() {
 
-	init();
+  var setGallery = new Vue({
+    el: '#setGallery',
+    data: {
+      sets: null,
+    }
+  });
 
-	function init() {
-		getSetData();
-	}
+  $.getJSON('/setData.json', function(json) {
+    setGallery.sets = json.sets;
+  });
 
-	function getSetData() {
-		$.ajax({
-		  url: "/setData.json",
-		  type: "GET",
-		  dataType: "json",
-		  success: function(data) {
-		    document.getElementById("setData").innerHTML = JSON.stringify(data.sets);
-		  },
-		  error: function(httpRequest, status, error) {
-		    console.log(error);
-		  }
-		});
-	}
-
-})(window.jQuery);
+  var $scrollingDiv = $("#scrollingDiv");
+  $(window).scroll(function() {
+    $scrollingDiv
+      .stop()
+      .animate({
+        "marginTop": ($(window).scrollTop())
+      }, 400);
+  });
+});

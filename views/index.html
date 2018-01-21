@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Set Data</title>
-</head>
-<body>
-	<h1>Set Data</h1>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <title>Set Data</title>
+  </head>
+  <body>
+		<div id="setGallery" v-cloak>
+      <ul class="grid">
+        <li v-for="set in sets">
+          <img v-bind:src="set.image" />
+        </li>
+      </ul>
+      <div id="setDisplay">
+				<img id="scrollingDiv" src="https://cdn.shopify.com/s/files/1/0251/1873/products/image_ce55c9d6-d5ad-4964-a987-d15ea24d2438_1600x1600.jpg?v=1471989557">
+      </div>
+    </div>
 
-	<div id="setData"></div>
-
-	<!-- Load JQuery from a CDN -->
-	<script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
-	<script src="js/index.js"></script>
-</body>
+    <!-- Load JQuery from a CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/index.js"></script>
+  </body>
 </html>

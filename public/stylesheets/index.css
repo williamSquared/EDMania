@@ -1,0 +1,30 @@
+/*-------------------------
+    General
+--------------------------*/
+
+section, footer, header, aside, nav{
+    display: block;
+}
+
+/*-------------------------
+    Grid layout
+--------------------------*/
+
+ul.grid{
+  list-style: none;
+  width: 50%;
+}
+
+ul.grid li{
+  padding: 2px;
+  float:left;
+}
+
+ul.grid li img{
+  width:400px;
+  height:280px;
+  object-fit: cover;
+  display:block;
+  border:black;
+  border-style:solid;
+}
