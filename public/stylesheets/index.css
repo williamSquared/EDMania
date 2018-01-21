@@ -6,25 +6,38 @@ section, footer, header, aside, nav{
     display: block;
 }
 
+#setDisplay {
+  width: 400px;
+  float: left;
+  margin-top: 16px;
+}
+
+.card {
+  width: 800px;
+}
+
 /*-------------------------
     Grid layout
 --------------------------*/
 
 ul.grid{
   list-style: none;
-  width: 50%;
+  width: 46%;
+  float: left;
+  margin-top: 16px;
 }
 
 ul.grid li{
   padding: 2px;
-  float:left;
+  float: left;
+  cursor: pointer;
 }
 
 ul.grid li img{
-  width:400px;
-  height:280px;
+  width: 400px;
+  height: 280px;
   object-fit: cover;
-  display:block;
-  border:black;
-  border-style:solid;
+  display: block;
+  border: black;
+  border-style: solid;
 }

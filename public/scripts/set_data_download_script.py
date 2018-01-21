@@ -34,8 +34,10 @@ def downloadSetData():
 
 			set_info = recent_details_soup.find_all('div', class_="entry")[0].find('p').get_text().split('\n')
 			image_url = str(recent.find('img')['src']).replace("-310x165", "")
+			iHeartTrackId = getIHeartTrackId(str(recent_details_soup.find_all('div', class_="hearthis-widget")))
+			iHeartTrackURL = buildMediaPlayerLink(iHeartTrackId)
 
-			createDataObject(set_info, download_links, image_url)
+			createDataObject(set_info, download_links, image_url, iHeartTrackURL)
 
 def buildDownloadLinks(links):
 	download_links = {}
@@ -48,7 +50,15 @@ def buildDownloadLinks(links):
 
 	return download_links
 
-def createDataObject(set_info, download_links, image_url):
+def getIHeartTrackId(iHeartString):
+	start = 'embed/'
+	end = '/transparent_black'
+	return iHeartString[iHeartString.find(start)+len(start):iHeartString.rfind(end)]
+
+def buildMediaPlayerLink(trackId):
+	return "<iframe scrolling='no' id='hearthis_at_track_'" + trackId + " width='100%' height='50' src='https://hearthis.at/embed/" + trackId + "/transparent/?hcolor=&color=cca11e&style=2&block_size=2&block_space=1&background=0&waveform=1&cover=1&autoplay=0&css=' frameborder='0' allowtransparency>"
+
+def createDataObject(set_info, download_links, image_url, iHeartTrackURL):
 	data.append({
 		'artist': set_info[0].split(':')[1].strip(),
 		'title': set_info[1].split(':')[1].strip(), 
@@ -57,7 +67,8 @@ def createDataObject(set_info, download_links, image_url):
 		'size': set_info[4].split(':')[1].strip().replace(',', '.'),
 		'genre': set_info[5].split(':')[1].strip(),
 		'image': image_url,
-		'download_links': download_links
+		'download_links': download_links,
+		'iHeartTrackURL': iHeartTrackURL
 	})
 
 downloadSetData()

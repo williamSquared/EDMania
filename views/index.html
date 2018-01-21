@@ -9,16 +9,27 @@
 		<div id="setGallery" v-cloak>
       <ul class="grid">
         <li v-for="set in sets">
-          <img v-bind:src="set.image" />
+          <img v-bind:src="set.image" @click="viewSetData(set)" />
         </li>
       </ul>
-      <div id="setDisplay">
-				<img id="scrollingDiv" src="https://cdn.shopify.com/s/files/1/0251/1873/products/image_ce55c9d6-d5ad-4964-a987-d15ea24d2438_1600x1600.jpg?v=1471989557">
+      <div id="setDisplay" style="display:None;">
+      	<div id="scrollingDiv" >
+      		<div class="card">
+					  <img id="setImage" class="card-img-top" src="">
+					  <div class="card-body">
+					    <h3 id="setArtist"></h3>
+					    <h5 id="setTitle"></h5>
+					    <p class="card-text"></p>
+					    <div id="setTrack"></div>
+					  </div>
+					</div>
+      	</div>
       </div>
     </div>
 
     <!-- Load JQuery from a CDN -->
     <script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="js/index.js"></script>
   </body>

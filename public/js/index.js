@@ -4,14 +4,35 @@ $().ready(function() {
     el: '#setGallery',
     data: {
       sets: null,
+    },
+    methods: {
+    	viewSetData: function(setData) {
+    		$('#setImage').attr('src', setData.image);
+    		$('#setArtist').text(setData.artist);
+    		$('#setTitle').text(setData.title);
+    		$('#setTrack').html(setData.iHeartTrackURL);
+    		$('#setDisplay').show();
+    		// setDetails.setData = setData;
+    	}
     }
   });
+
+  // var setDetails = new Vue({
+  // 	el: '#setDetails',
+  // 	data: {
+  // 		setData: null,
+  // 	}
+  // });
 
   $.getJSON('/setData.json', function(json) {
     setGallery.sets = json.sets;
   });
 
-  var $scrollingDiv = $("#scrollingDiv");
+  setupScrollingDiv();
+});
+
+function setupScrollingDiv() {
+	var $scrollingDiv = $("#scrollingDiv");
   $(window).scroll(function() {
     $scrollingDiv
       .stop()
@@ -19,4 +40,4 @@ $().ready(function() {
         "marginTop": ($(window).scrollTop())
       }, 400);
   });
-});
+}
