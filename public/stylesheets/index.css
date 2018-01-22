@@ -7,13 +7,52 @@ section, footer, header, aside, nav{
 }
 
 /*-------------------------
+    Search layout
+--------------------------*/
+#search {
+  width: 300px;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.search-wrapper label {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.4);
+  top: 15px;
+  left: 240px;
+  z-index: -1;
+  transition: .15s all ease-in-out;
+}
+
+.search-wrapper input {
+  padding: 4px 12px;
+  color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  transition: .15s all ease-in-out;
+  background: white;
+}
+
+.search-wrapper input:focus {
+  outline: none;
+  transform: scale(1.05) translateX(7px);
+}
+
+.search-wrapper input:focus + label {
+  transform: translateY(0px) translateX(125px);
+}
+
+.search-wrapper input::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/*-------------------------
     Set Details layout
 --------------------------*/
 
 #setDisplay {
   width: 400px;
   float: left;
-  margin-top: 16px;
+  margin-top: 6px;
 }
 
 /*-------------------------
@@ -32,7 +71,7 @@ ul.grid{
   list-style: none;
   width: 46%;
   float: left;
-  margin-top: 16px;
+  margin-top: 6px;
 }
 
 ul.grid li{

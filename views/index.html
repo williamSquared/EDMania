@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112825150-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-112825150-1');
+		</script>
+
     <meta charset="utf-8">
+    <meta name="description" content="Listen to all the latest Electronic music. Content ranges from EDM festivals, radio shows, live mixes, DJ sets, club mixes, and Podcasts"/>
+    <title>EDMania - Download the latest EDM Radios hows and Sets</title>
+
     <link rel="stylesheet" href="stylesheets/index.css">
-    <title>EDMania</title>
   </head>
   <body>
 		<div id="setGallery" v-cloak>
+			<div class="search-wrapper">
+				<input id="search" class="form-control" type="text" v-model="search" placeholder="Artist Search"/>
+				<label>Arist Search</label>
+			</div>
       <ul class="grid">
-        <li v-for="set in sets">
+        <li v-for="set in filteredSets">
           <img v-bind:src="set.image" @click="viewSetData(set)" />
         </li>
       </ul>
@@ -21,6 +37,7 @@
 					    <h5 id="setTitle"></h5>
 					    <p class="card-text"></p>
 					    <div id="setTrack"></div>
+					    <a id="setDownloadLink" href="#" target="_blank"><button type="button" class="btn btn-danger">Download from Zippyshare</button></a>
 					  </div>
 					</div>
       	</div>

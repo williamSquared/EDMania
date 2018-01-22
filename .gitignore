@@ -1,3 +1,4 @@
 node_modules/
 local_settings.py
 .env
+public/scripts/__pycache__/

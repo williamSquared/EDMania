@@ -6,8 +6,8 @@ import local_settings
 
 data = []
 
-# urls = ["http://www.global-sets.com/", "http://www.global-sets.com/page/2/", "http://www.global-sets.com/page/3/", "http://www.global-sets.com/page/4/"]
-urls = ["http://www.global-sets.com/"]
+urls = ["http://www.global-sets.com/", "http://www.global-sets.com/page/2/", "http://www.global-sets.com/page/3/", "http://www.global-sets.com/page/4/"]
+# urls = ["http://www.global-sets.com/"]
 
 def insertDataInMongo(data):
 	connection = pymongo.MongoClient('ds111648.mlab.com', 11648)
@@ -60,7 +60,7 @@ def getIHeartTrackId(iHeartString):
 	return iHeartString[iHeartString.find(start)+len(start):iHeartString.rfind(end)]
 
 def buildMediaPlayerLink(trackId):
-	return "<iframe scrolling='no' id='hearthis_at_track_'" + trackId + " width='100%' height='50' src='https://hearthis.at/embed/" + trackId + "/transparent/?hcolor=&color=cca11e&style=2&block_size=2&block_space=1&background=0&waveform=1&cover=1&autoplay=0&css=' frameborder='0' allowtransparency>"
+	return "<iframe scrolling='no' id='hearthis_at_track_'" + trackId + " width='100%' height='130' src='https://hearthis.at/embed/" + trackId + "/transparent/?hcolor=&color=&style=2&block_size=2&block_space=1&background=0&waveform=0&cover=1&autoplay=0&css=' frameborder='0' allowtransparency>"
 
 def createDataObject(set_info, download_links, image_url, iHeartTrackURL):
 	data.append({
