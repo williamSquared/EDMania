@@ -38,6 +38,7 @@ def downloadSetData():
 
 			set_info = recent_details_soup.find_all('div', class_="entry")[0].find('p').get_text().split('\n')
 			image_url = str(recent.find('img')['src']).replace("-310x165", "")
+
 			iHeartTrackId = getIHeartTrackId(str(recent_details_soup.find_all('div', class_="hearthis-widget")))
 			iHeartTrackURL = buildMediaPlayerLink(iHeartTrackId)
 

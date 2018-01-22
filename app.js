@@ -3,10 +3,14 @@ var http = require("http");
 var _ = require("underscore");
 var bodyParser = require('body-parser');
 var consolidate = require("consolidate");
+var PythonShell = require('python-shell');
+var CronJob = require('cron').CronJob;
 
 var routes = require('./routes');
 var mongoClient = require("mongodb").MongoClient;
 var express = require("express");
+
+setupCronJobs();
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -33,3 +37,31 @@ http.createServer(app).listen(port, function() {
     routes.initialize(app, db);
   });
 });
+
+function downloadSetData() {
+	console.log('Attempting to download set data...');
+	PythonShell.run('./public/scripts/set_data_download_script.py', function (err) {
+	if (err) return err;
+		console.log('Finished downloading set data.');
+	});
+}
+
+function setupCronJobs() {
+	new CronJob({
+		cronTime: '00 00 6 * * *',
+		onTick: function() {
+		  downloadSetData();
+		},
+		runOnInit: false,
+		timeZone: 'America/Phoenix'
+	});
+
+	new CronJob({
+		cronTime: '00 00 13 * * *',
+		onTick: function() {
+		  downloadSetData();
+		},
+		runOnInit: false,
+		timeZone: 'America/Phoenix'
+	});
+}
