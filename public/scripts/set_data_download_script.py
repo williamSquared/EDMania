@@ -15,7 +15,7 @@ def insertDataInMongo(data):
 	db.authenticate(local_settings.secret_keys['MLAB_USER'], local_settings.secret_keys['MLAB'])
 
 	try:
-		db.setData.insert_many(data, ordered=False)
+		db.setData.insert_many(data, ordered=True)
 	except pymongo.errors.BulkWriteError as e:
 		pass # Ignoring error mentioning duplicates
 
