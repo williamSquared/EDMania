@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import pymongo
 from pymongo import MongoClient
-import local_settings
+import os
 
 data = []
 
@@ -12,7 +12,7 @@ urls = ["http://www.global-sets.com/", "http://www.global-sets.com/page/2/", "ht
 def insertDataInMongo(data):
 	connection = pymongo.MongoClient('ds111648.mlab.com', 11648)
 	db = connection['edmania']
-	db.authenticate(local_settings.secret_keys['MLAB_USER'], local_settings.secret_keys['MLAB'])
+	db.authenticate(os.environ.get('MLAB_USER'), os.environ.get('MLAB_PW'))
 
 	try:
 		db.setData.insert_many(data, ordered=True)

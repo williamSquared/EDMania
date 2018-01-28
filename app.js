@@ -42,7 +42,7 @@ function downloadSetData() {
 	console.log('Attempting to download set data...');
 	PythonShell.run('./public/scripts/set_data_download_script.py', function (err) {
 	if (err) return err;
-		console.log('Finished downloading set data.');
+	console.log('Finished downloading set data.');
 	});
 }
 
@@ -52,7 +52,7 @@ function setupCronJobs() {
 		onTick: function() {
 		  downloadSetData();
 		},
-		runOnInit: false,
+		runOnInit: true,
 		timeZone: 'America/Phoenix'
 	});
 
