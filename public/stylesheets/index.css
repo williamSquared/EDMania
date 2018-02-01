@@ -88,3 +88,52 @@ ul.grid li img{
   border: black;
   border-style: solid;
 }
+
+@media (min-width: 500px) and (max-width: 999px) {
+  ul.grid li img{
+    width: 100px;
+    height: 100px;
+  }
+
+  #setDisplay {
+    width: auto;
+  }
+
+  .card {
+    width: 300px;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1209px){
+  ul.grid li img{
+    width: 200px;
+  }
+
+  .card {
+    width: 450px;
+  }
+}
+
+@media (min-width: 1210px) {
+  ul.grid li img{
+    width: 250px;
+  }
+}
+
+@media (min-width: 1430px) {
+  ul.grid li img{
+    width: 300px;
+  }
+}
+
+@media (min-width: 1740px) {
+  ul.grid li img{
+    width: 370px;
+  }
+}
+
+@media (min-width: 1900px) {
+  ul.grid li img{
+    width: 400px;
+  }
+}
