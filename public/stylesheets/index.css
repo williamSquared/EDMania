@@ -89,6 +89,10 @@ ul.grid li img{
   border-style: solid;
 }
 
+/*-------------------------
+    Media Queries
+--------------------------*/
+
 @media (min-width: 500px) and (max-width: 999px) {
   ul.grid li img{
     width: 100px;

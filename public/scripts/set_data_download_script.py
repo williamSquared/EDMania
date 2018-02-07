@@ -12,7 +12,7 @@ urls = ["http://www.global-sets.com/", "http://www.global-sets.com/page/2/", "ht
 def insertDataInMongo(data):
 	connection = pymongo.MongoClient('ds111648.mlab.com', 11648)
 	db = connection['edmania']
-	db.authenticate(os.environ.get('MLAB_USER'), os.environ.get('MLAB_PW'))
+	db.authenticate(os.environ['MLAB_USER'], os.environ['MLAB_PW'])
 
 	try:
 		db.setData.remove({})
